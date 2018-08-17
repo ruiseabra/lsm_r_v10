@@ -7,20 +7,39 @@ FRZ <- 273.15
 # (water)/(dry air) molecular mass ratio, epsilon
 EPS <- 0.622
 
-# latent heat of vaporization of water (condensing, J kg−1) 
+# latent heat of vaporization of water (condensing, J kg−1)
 #   aka LSUBC
 LVH2O <- 2.501e6 # wikipedia = 2.264e6
 
 # ???
 SIGMA <- 5.67e-8
 
+
 # heat capacity (J kg-1 K-1)
+# air and water have three possible values:
+#  - the one that was being used in previous versions
+#  - a value that is closest to the values found in wikipedia but that was
+#     commented out
+#  - a value that is found in wikipedia as the reference value
+
 # cpv = water vapor at constant pressure
 CPV <- 1870
-# cw = liquid water
-CW  <- 4187
-# cp = dry air at constant pressure
-CP  <- 1004.5
+
+# cw = liquid water (aka CPH2O, CH2O)
+CW   <- 4187
+# 4218 (previous, as CPH2O)
+CH2O <- CW * 1000
+# 4.184e6  (previous)
+# 4.2e6    (previous)
+# 4.1813e6 (wikipedia)
+
+# cp = dry air at constant pressure (aka CAIR)
+CP   <- 1004.5
+CAIR <- CP * 1000
+# 7e5    (previous)
+# 1e6    (previous)
+# 1.12e6 (wikipedia)
+
 
 # ideal gas constant for water vapor (J kg-1 K-1)
 RV <- 461.5

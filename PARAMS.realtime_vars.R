@@ -37,7 +37,7 @@ TSOIL <- 0
 
 
 ## FLUX AND RADIATION ----------#
- # actual latent heat flux (W m-2; negative if up from surface)
+# actual latent heat flux (W m-2; negative if up from surface)
 ETA <- 0
 
 # surface exchange coefficient for momentum (m s-1)
@@ -57,13 +57,13 @@ RCH <- 0
 #  SSOIL < 0: cool the surface (day time)
 SSOIL <- 0
 
- # total downward radiation (solar + longwave)
+# total downward radiation (solar + longwave)
 FDOWN <- 0
 
 # Right-Hand Side Tendency Terms for subsurface heat flux
 RHSTS <- ZEROS
 
-# vertical difference of the heat flux at top and bottom of first 
+# vertical difference of the heat flux at top and bottom of first
 #  soil layer (impacts the freeze <-> thaw balance)
 QTOT <- 0
 
@@ -82,10 +82,10 @@ EDIR1 <- 0
 ET <- ZEROS
 
 # effective ET  (different units)
-ET1 <- 
+ET1 <-
 
-# modeled actual evapo-transpiration
-ETA1 <- 0
+	# modeled actual evapo-transpiration
+	ETA1 <- 0
 
 # potential evaporation (ETP < 0 leads to dew formation)
 ETP <- 0

@@ -93,16 +93,17 @@ t1 <- ymd_h("2018-03-01 00")
 lat <- 41.84
 lon <- -8.89 # -8.85 is the eastermost (coastalmost) sea pixel in the meteogalicia model, but -8.89 is the easternmost sea pixel to get fes tides
 
-spoint <- SpatialPoints(cbind(lon, lat))
-projection(spoint) <- wgs84
+loc <- SpatialPoints(cbind(lon, lat))
+projection(loc) <- wgs84
 # project point to lcc so it overlays with the data at the server
-spoint <- spTransform(spoint, lcc)
+loc <- spTransform(loc, lcc)
 
 # get data at coordinates
-w <- getPointDays(spoint,vars = vars, start = t0, end = t1, resolution = 4)
+buf <- (3600 * 24)
+w <- getPointDays(loc, vars = vars, start = t0 - buf, end = t1 + buf, resolution = 4)
 w <- w[time(w) >= t0 & time(w) <= t1, ]
-t0 <- first(time(w))
-t1 <- last(time(w))
+if (t0 != first(time(w))) stop("t0 has changed")
+if (t1 !=  last(time(w))) stop("t1 has changed")
 colnames(w) <- c("lwm", cols)
 
 ### check quality ####
@@ -128,6 +129,7 @@ w$tide <- tides
 # future # include atmospheric effects (pressure, wind surge)
 
 ### clean up ####
+w$rh <- w$rh * 100
 w <- xts(coredata(w), time(w))
 save(w, file = str_c(DIR, "weather_3600.RData"))
 w2 <- w
